@@ -1,4 +1,4 @@
-![LogoPharmacieSauteuhz](C:\Users\zidika\Desktop\PHARMACIE-SAUTEUHZ\Image)
+![LogoPharmacieSauteuhz](logoPharmacie.png)
 
 ------------------------------------------------------------------------------------------------------------
 

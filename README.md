@@ -20,7 +20,7 @@ __Comment gérer le Back-End__
 + Utilisation du framework ExpressJS
 
 __Gestion de la base de données__
-+ Base de données crée et mis en place sur AlwayData sous PhpMyAdmin
++ Base de données crée et mise en place sur AlwayData sous PhpMyAdmin
 
 ------------------------------------------------------------------------------------------------------------
 

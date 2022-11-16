@@ -2,8 +2,6 @@
   <img src="logoPharmacie.png" />
 </p>
 
-![LogoPharmacieSauteuhz](logoPharmacie.png)
-
 ------------------------------------------------------------------------------------------------------------
 
 # PRESENTATION DU PROJET : LA PHARMACIE-SAUTEUHZ

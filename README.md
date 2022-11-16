@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="logoPharmacie.png" />
+</p>
+
 ![LogoPharmacieSauteuhz](logoPharmacie.png)
 
 ------------------------------------------------------------------------------------------------------------

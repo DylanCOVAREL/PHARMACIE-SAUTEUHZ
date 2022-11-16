@@ -1,3 +1,7 @@
+![LogoPharmacieSauteuhz](C:\Users\zidika\Desktop\PHARMACIE-SAUTEUHZ\Image\logoPharmacie)
+
+------------------------------------------------------------------------------------------------------------
+
 # PRESENTATION DU PROJET : LA PHARMACIE-SAUTEUHZ
 La Pharmacie Sauteuhz est notre 1er projet de groupe de 2ème année. Il a pour principal mission de créer une application web permettant à une pharmacie et leurs employés de gérer les clients ainsi que leurs ordonnances mais également les stocks de medicament prévus à la remise.
 

@@ -16,9 +16,45 @@ var way_stocks = require('../controllers/Control_Stocks')
 routeur.get('/accueil', way_accueil.accueil_display)
     .get('/', way_accueil.accueil_display)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 // Routage effectuer sur la page comportant les informations des Medecins 
-routeur.get('/liste_medecins',way_medecins.afficher_liste_medecins)
-    .get('/form_medecin', way_medecins.afficher_form_medecin)
+routeur.get('/medecin_liste',way_medecins.afficher_liste_medecins)
+    .get('/form_medecin', way_medecins.medecin_display_form)
     .get('/fiche_medecin/:id', way_medecins.afficher_fiche_medecin)
     .post('/form_medecin', way_medecins.executer_form_medecin)
     .post('/fiche_medecin/:id', way_medecins.update_form_medecin)

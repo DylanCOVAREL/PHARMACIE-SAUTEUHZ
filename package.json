@@ -22,6 +22,7 @@
     "express": "^4.18.2",
     "express-session": "^1.17.3",
     "iniparser": "^1.0.5",
+    "mongoose": "^6.7.3",
     "mysql": "^2.18.1"
   }
 }

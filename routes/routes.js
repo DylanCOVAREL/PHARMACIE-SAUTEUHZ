@@ -64,4 +64,4 @@ routeur.get('/liste_stocks', way_stocks.afficher_liste_stocks)
     .post('/fiche_stock/:id', way_stocks.update_form_stock)
     .post('/delete_stock/:id', way_stocks.delete_fiche_stock)
 
-module.exports = router;
+module.exports = routeur;

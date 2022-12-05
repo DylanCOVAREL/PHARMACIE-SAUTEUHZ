@@ -13,11 +13,6 @@ app.set('view engine', 'ejs')
 app.use(express.static('param'))
 app.use(express.static('views'))
 app.use(express.urlencoded());
-app.use(session({
-	secret:'HelloWorld!',
-	saveUninitialized: true,
-	resave: true
-}));
 app.use(flash());
 
 app.listen(3000, () => console.log('Le serveur est fonctionnel !'))
@@ -25,4 +20,4 @@ app.get('/', (req, res) => {
     res.send('Le serveur est fonctionnel !')
 })
 
-app.use('/PHARMACIE-SAUTEUHZ', Routeur)
+app.use('/PSauteuhz', Routeur)

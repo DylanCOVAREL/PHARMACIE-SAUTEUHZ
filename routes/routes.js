@@ -33,20 +33,20 @@ routeur.get('/liste_mutuelles', way_mutuelle.afficher_liste_mutuelles)
     .post('/delete_mutuelle/:id', way_mutuelle.delete_fiche_mutuelle)
 
 // Routage effectuer sur la page concernant les information des Maladies
-routeur.get('/liste_pathologies', way_maladie.afficher_liste_pathologies)
-    .get('/form_pathologie', way_maladie.afficher_form_pathologie)
-    .get('/fiche_pathologie/:id', way_maladie.afficher_fiche_pathologie)
-    .post('/form_pathologie', way_maladie.executer_form_pathologie)
-    .post('/fiche_pathologie/:id', way_maladie.update_form_pathologie)
-    .post('/delete_pathologie/:id', way_maladie.delete_fiche_pathologie)
+routeur.get('/liste_maladies', way_maladie.afficher_liste_maladies)
+    .get('/form_maladie', way_maladie.afficher_form_maladie)
+    .get('/fiche_maladie/:id', way_maladie.afficher_fiche_maladie)
+    .post('/form_maladie', way_maladie.executer_form_maladie)
+    .post('/fiche_maladie/:id', way_maladie.update_form_maladie)
+    .post('/delete_maladie/:id', way_maladie.delete_fiche_maladie)
 
 // Routage effectuer sur la page concernant les information des Patients  
-routeur.get('/liste_clients', way_patients.afficher_liste_clients)
-    .get('/form_client', way_patients.afficher_form_client)
-    .get('/fiche_client/:id', way_patients.afficher_fiche_client)
-    .post('/form_client', way_patients.executer_form_client)
-    .post('/fiche_client/:id', way_patients.update_form_client)
-    .post('/delete_client/:id', way_patients.delete_fiche_client) 
+routeur.get('/liste_patients', way_patients.afficher_liste_patients)
+    .get('/form_patient', way_patients.afficher_form_patient)
+    .get('/fiche_patient/:id', way_patients.afficher_fiche_patient)
+    .post('/form_patient', way_patients.executer_form_patient)
+    .post('/fiche_patient/:id', way_patients.update_form_patient)
+    .post('/delete_patient/:id', way_patients.delete_fiche_patient) 
 
 // Routage effectuer sur la page concernant les information des Ordonnances
 routeur.get('/liste_ordonnances', way_ordonnances.afficher_liste_ordonnances)

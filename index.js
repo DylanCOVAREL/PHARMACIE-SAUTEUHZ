@@ -10,7 +10,7 @@ const Routeur = require('./routes/routes');
 // activer les dépendances
 let app = express()
 app.set('view engine', 'ejs')
-app.use(express.static('param'))
+app.use(express.static('assets'))
 app.use(express.static('views'))
 app.use(express.urlencoded());
 app.use(flash());
@@ -20,4 +20,8 @@ app.get('/', (req, res) => {
     res.send('Le serveur est fonctionnel !')
 })
 
+<<<<<<< HEAD
 app.use('/PSauteuhz', Routeur)
+=======
+app.use('/pharmaciesautheuhz', Routeur)
+>>>>>>> 6424395d458d00de29db95df55b099212c5d9ce7

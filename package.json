@@ -1,29 +1,30 @@
 {
-  "name": "pharmacie-sauteuhz",
+  "name": "nuit_info",
   "version": "1.0.0",
-  "description": "<p align=\"center\">\r   <img src=\"Image\\logoPharmacie.png\" />\r </p>",
+  "description": "Projet prévention contre les MST Nuit de l'info 2022",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DylanCOVAREL/PHARMACIE-SAUTEUHZ.git"
+    "url": "git+https://github.com/DylanCOVAREL/Nuit_Info.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/DylanCOVAREL/PHARMACIE-SAUTEUHZ/issues"
+    "url": "https://github.com/DylanCOVAREL/Nuit_Info/issues"
   },
-  "homepage": "https://github.com/DylanCOVAREL/PHARMACIE-SAUTEUHZ#readme",
+  "homepage": "https://github.com/DylanCOVAREL/Nuit_Info#readme",
   "dependencies": {
+    "body-parser": "^1.20.1",
     "bootstrap": "^5.2.3",
-    "connect-flash": "^0.1.1",
     "ejs": "^3.1.8",
     "express": "^4.18.2",
-    "express-session": "^1.17.3",
+    "fs-extra": "^11.1.0",
     "iniparser": "^1.0.5",
-    "mongoose": "^6.7.3",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3",
+    "urlencode": "^1.1.0"
   }
 }

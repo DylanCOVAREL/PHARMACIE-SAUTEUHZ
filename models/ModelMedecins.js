@@ -1,49 +1,92 @@
-var db = require('../connexion/loading');
+const mysql2 = require('mysql2')
+const iniparser = require('iniparser')
+let configDB = iniparser.parseSync('./DB.ini')
 
-module.exports= {
-    //afficher la liste des Medecines avec leurs données
-    afficher_liste_medecins:function(callback){
-        var sql ='SELECT * FROM Medecins';
-        db.query(sql, function(err,data,fields){
-            if (err)throw err;
-            return callback(data);
-        });
+let mysqlconnexion = mysql2.createConnection({
+    host:configDB['dev']['host'],
+    user:configDB['dev']['user'],
+    password:configDB['dev']['password'],
+    database:configDB['dev']['database']
+});
+
+mysqlconnexion.connect((err) => {
+    if (err) console.log('BDD connexion échouée \n Erreur: '+JSON.stringify(err))
+})
+
+const Medecins = {
+    async afficherMedecins(){
+        return new Promise((resolve, reject) => {
+            let requeteSQL = "SELECT * FROM medecin"
+            mysqlconnexion.query(requeteSQL, (err, lignes) => {
+                if(err){
+                    return reject(err)
+                }
+                return resolve(lignes)
+            })
+        })
     },
-    //afficher le formulaire d'ajout de Medecins
-    afficher_form_medecin: function(callback){
-        return callback();
+
+    async afficherUnMedecin(req){
+        let id = req.params.id
+        let requeteSQL = "SELECT * FROM medecin WHERE Medecin_Id = ?"
+        return new Promise((resolve, reject)=>{
+            mysqlconnexion.query(requeteSQL, [id], (err, lignes) => {
+                if(err){
+                    return reject(err)
+                }
+                return resolve(lignes)
+            })
+        })
+    }, 
+
+    async ajouterMedecin(req){
+        let nom = req.body.nom
+        let prenom = req.body.prenom
+        let numero = req.body.numero
+        let diplome = req.body.diplome
+        let requeteSQL = "INSERT INTO medecin (Medecin_Nom, Medecin_Prenom, Medecin_NumeroTelephone, Medecin_IdDiplome) VALUES(?,?,?,?)"
+
+        return new Promise((resolve, reject)=>{
+            mysqlconnexion.query(requeteSQL, [nom, prenom, numero, diplome], (err, lignes, champs) => {
+                if(err){
+                    return reject(err)
+                }
+                return resolve(lignes)
+            })
+        })
     },
-    //afficher une fiche individuelle sous forme de formulaire pour chaque Medecin, permettant également de modifier les données
-    afficher_fiche_medecin: function(myID, callback){
-        var sql = 'SELECT * FROM Medecins WHERE Medecins_id = ?' ;
-        db.query(sql, myID, function(err,data,fields){
-            if(err)throw err;
-            return callback(data);
-        });
+
+    async supprimerMedecin(req){ 
+        let id = req.params.id
+        let requeteSQL = "DELETE FROM medecin WHERE Medecin_Id = ?"
+        return new Promise((resolve, reject)=>{
+            mysqlconnexion.query(requeteSQL, [id], (err, lignes, champs) => {
+                if(err){
+                    return reject(err)
+                }
+                return resolve(lignes)
+            })
+        })
     },
-    //éxécuter le formulaire d'ajout de Medecin
-    executer_form_medecin: function(medecinOrdreNo,medecinNom, medecinPrenom, medecinTel, MedecinMail, callback){
-        var sql= 'INSERT INTO Medecins SET ? ' ;
-        db.query(sql,medecinOrdreNo, medecinNom, medecinPrenom,medecinTel, MedecinMail, function(err, data){
-            if(err)throw err;
-            return callback(data);
-        });
-    },
-    //éxécuter le formulaire de modification des données Medecins
-    update_form_medecin: function(medecinParam,myID, callback){
-        var sql = 'UPDATE Medecins SET ? WHERE Medecins_id = ?' ;
-        db.query(sql, medecinParam, myID, function(err, data,fields){
-            if(err)throw err;
-            return callback(data);
-        });
-    },
-    //supprimer les données sur un medecin 
-    delete_fiche_medecin: function(myID, callback){
-        var sql = 'DELETE FROM Medecins WHERE Medecins_id = ?'
-        db.query(sql, myID, function(err,data,fields){
-            if(err)throw err;
-            return callback(data);
-        });
+
+    async modifierMedecin(req){
+        let id = req.params.id
+        let nom = req.body.nom
+        let prenom = req.body.prenom
+        let numero = req.body.numero
+        let diplome = req.body.diplome
+        let requeteSQL = "UPDATE medecin SET Medecin_Nom = ?, Medecin_Prenom = ?, Medecin_NumeroTelephone = ?, Medecin_IdDiplome = ? WHERE Medecin_Id = ?"
+        return new Promise((resolve, reject)=>{
+            mysqlconnexion.query(requeteSQL, [nom, prenom, numero, diplome, id], (err, lignes, champs) => {
+                if(err){
+                    return reject(err)
+                }
+                return resolve(lignes)
+            })
+        })
     }
-    
+}
+
+module.exports = {
+    ModelMedecins
 }

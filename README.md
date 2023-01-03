@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="Image\logoPharmacie.png" />
+  <img src="public\images\logoPharmacie.png" />
 </p>
 
 ------------------------------------------------------------------------------------------------------------

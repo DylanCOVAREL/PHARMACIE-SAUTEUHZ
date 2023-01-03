@@ -1,52 +1,72 @@
-var db = require('../connexion/loading');
+const Mutuelles = {
 
-module.exports= {
-    //afficher la liste des Mutuelle avec leurs données
-    afficher_liste_mutuelles:function(callback){
-        var sql = 'SELECT * FROM Mutuelles'
-        db.query(sql, function(err,data,fields){
-            if (err)throw err;
-            return callback(data);
-        });
+    async afficherMutuelles(){
+        return new Promise((resolve, reject)=>{
+            mysqlconnexion.query("SELECT * FROM mutuelle",  (error, elements)=>{
+                if(error){
+                    return reject(error)
+                }
+                return resolve(elements)
+            })
+        })
     }, 
-    //afficher le formulaire d'ajout de Mutuelle 
-    afficher_form_mutuelle: function(callback){
-        return callback();
+
+    async afficherUneMutuelle(req){
+        let id = req.params.id
+        let requeteSQL = "SELECT * FROM mutuelle WHERE Mutuelle_Id = ?"
+        return new Promise((resolve, reject)=>{
+            mysqlconnexion.query(requeteSQL, [id], (err, lignes) => {
+                if(err){
+                    return reject(err)
+                }
+                return resolve(lignes)
+            })
+        })
+    }, 
+
+    async ajouterMutuelle(req){
+        let nom = req.body.nom
+        let taux = req.body.taux
+        let requeteSQL = "INSERT INTO mutuelle (Mutuelle_Nom, Mutuelle_Taux) VALUES(?,?)"
+        return new Promise((resolve, reject)=>{
+            mysqlconnexion.query(requeteSQL, [nom, taux], (err, lignes, champs) => {
+                if(err){
+                    return reject(err)
+                }
+                return resolve(lignes)
+            })
+        })
     },
-    //afficher une fiche individuelle sous forme de formulaire pour chaque Mutuelle, permettant également de modifier les données
-    afficher_fiche_mutuelle: function(myID,callback){
-        var sql = 'SELECT * FROM Mutuelles WHERE Mutuelles_id =?'
-        db.query(sql, myID, function(err,data,fields){
-            if(err)throw err;
-            return callback(data);
-        });
+
+    async supprimerMutuelle(req){ 
+        let id = req.params.id
+        let requeteSQL = "DELETE FROM mutuelle WHERE Mutuelle_Id = ?"
+        return new Promise((resolve, reject)=>{
+            mysqlconnexion.query(requeteSQL, [id], (err, lignes, champs) => {
+                if(err){
+                    return reject(err)
+                }
+                return resolve(lignes)
+            })
+        })
     },
-    //éxécuter le formulaire d'ajout de Mutuelle
-    executer_form_mutuelle: function(Mutuelles_nom,Mutuelles_tel, Mutuelles_mail, callback){
-        var sql= 'INSERT INTO Mutuelles SET ? ' ;
-        db.query(sql,Mutuelles_nom, Mutuelles_tel, Mutuelles_mail, function(err, data){
-            if(err)throw err;
-            return callback(data);
-        });
-    },
-    //éxécuter le formulaire de modification des données Mutuelle
-    update_form_mutuelle: function(medecinParam,myID, callback){
-        var sql = 'UPDATE Mutuelles SET  ? WHERE Mutuelles_id = ?' ;
-        db.query(sql, medecinParam, myID, function(err, data,fields){
-            if(err)throw err;
-            return callback(data);
-        });
-    },
-    //supprimer les données Mutuelle 
-    delete_fiche_mutuelle:function(myID, callback){
-        var sql = 'DELETE FROM Mutuelles WHERE Mutuelles_id = ?'
-        db.query(sql, myID, function(err,data,fields){
-            if(err)throw err;
-            return callback(data);
-        });
+
+    async modifierMutuelle(req){
+        let id = req.params.id
+        let nom = req.body.nom
+        let taux = req.body.taux
+        let requeteSQL = "UPDATE mutuelle SET Mutuelle_Nom = ?, Mutuelle_Taux = ? WHERE Mutuelle_Id = ?"
+        return new Promise((resolve, reject)=>{
+            mysqlconnexion.query(requeteSQL, [nom, taux, id], (err, lignes, champs) => {
+                if(err){
+                    return reject(err)
+                }
+                return resolve(lignes)
+            })
+        })
     }
-    
-    
-    
-    
+}
+
+module.exports = {
+    ModelMutuelles
 }
